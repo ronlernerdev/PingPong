@@ -1,4 +1,10 @@
 web/
 build-web/
 build-raylib-web/
-subproject/raylib/
+subprojects/raylib/
+
+# OS/editor/build cache junk
+.DS_Store
+**/.DS_Store
+.cache/
+subprojects/.wraplock
