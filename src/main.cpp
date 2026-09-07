@@ -23,10 +23,20 @@ public:
 
 };
 class Paddle{
+protected:
+    void LimitMovement(){
+        if(y <= 0){
+            y = 0;
+        }
+        if(y + height >= GetScreenHeight()){
+            y = GetScreenHeight() - height;
+        }
+    }
 public:
     float x,y;
     float width, height;
     int speed;
+
 
     void Draw(){
         DrawRectangle(x, y, width, height, WHITE);
@@ -39,12 +49,7 @@ public:
             y = y + speed;
         }
 
-        if(y <= 0){
-            y = 0;
-        }
-        if(y + height >= GetScreenHeight()){
-            y = GetScreenHeight() - height;
-        }
+        LimitMovement();
     }
 
 };
@@ -58,6 +63,7 @@ public:
         if(y + height/2 <= ball_y){
             y = y + speed;
         }
+        LimitMovement();
     }
 };
 
@@ -99,6 +105,14 @@ int main(){
         ball.Update();
         player.Update();
         cpu.Update(ball.y);
+
+        //Check Collions
+        if(CheckCollisionCircleRec(Vector2{ball.y, ball.x}, ball.radius, Rectangle{player.x, player.y, player.width, player.height})){
+            ball.speed_x *= -1;
+        }
+        if(CheckCollisionCircleRec(Vector2{ball.x, ball.y}, ball.radius, Rectangle{cpu.x, cpu.y, cpu.width, cpu.height})){
+            ball.speed_x *= -1;
+        }
 
         //Drawing
         ClearBackground(BLACK); //Clears Ball Trace
