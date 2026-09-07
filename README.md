@@ -1,5 +1,6 @@
 # PingPong
-##yes its broken but its not my fault because compiled on desktop works fine. JUST RELOAD
+## yes its broken but its not my fault because compiled on desktop works fine. JUST RELOAD
+## Its 4 am and i am tired. I wont recompiled to web again. do that yourself if you reall need to. Next commit will only have the bare miniumum for desktop build. 
 
 # PLAY ON FULLSCREEN BY CLICKING TOP RIGHT BUTTON
 
