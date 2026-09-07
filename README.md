@@ -1,2 +1,7 @@
 # PingPong
-<iframe height="167" width="552" src="https://itch.io/embed/4982445" frameborder="0"><a href="https://ronlerner.itch.io/pingpong">PingPong by ronlerner</a></iframe>
+
+[![Play PingPong](https://img.shields.io/badge/Play%20PingPong-itch.io-fa5c5c?style=for-the-badge)](https://ronlerner.itch.io/pingpong)
+
+## Demo
+
+[Play the game on itch.io](https://ronlerner.itch.io/pingpong)
