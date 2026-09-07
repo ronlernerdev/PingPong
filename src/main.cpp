@@ -1,6 +1,9 @@
 #include <raylib.h>
 using namespace std;
 
+int player_score = 0;
+int cpu_score = 0;
+
 class Ball{
 public:
     float x,y;
@@ -16,9 +19,23 @@ public:
         if (y + radius >= GetScreenHeight() || y - radius <= 0){
             speed_y *= -1;
         }
-        if (x + radius >= GetScreenWidth() || x - radius <= 0){
-            speed_x *= -1;
+
+        if (x + radius >= GetScreenWidth()){ //cpu wins
+            cpu_score++;
+            ResetBall();
         }
+
+        if(x - radius <= 0){//player wins
+            player_score++;
+            ResetBall();
+        }
+    }
+    void ResetBall(){
+        x = GetScreenWidth()/2;
+        y = GetScreenHeight()/2;
+        int speed_choices[2] = {-1,1};
+        speed_x *= speed_choices[GetRandomValue(0, 1)];
+        speed_y *= speed_choices[GetRandomValue(-1, 0)];
     }
 
 };
@@ -107,10 +124,10 @@ int main(){
         cpu.Update(ball.y);
 
         //Check Collions
-        if(CheckCollisionCircleRec(Vector2{ball.y, ball.x}, ball.radius, Rectangle{player.x, player.y, player.width, player.height})){
+        if(CheckCollisionCircleRec({ball.x, ball.y}, ball.radius, {player.x, player.y, player.width, player.height})){
             ball.speed_x *= -1;
         }
-        if(CheckCollisionCircleRec(Vector2{ball.x, ball.y}, ball.radius, Rectangle{cpu.x, cpu.y, cpu.width, cpu.height})){
+        if(CheckCollisionCircleRec({ball.x, ball.y}, ball.radius, {cpu.x, cpu.y, cpu.width, cpu.height})){
             ball.speed_x *= -1;
         }
 
@@ -122,7 +139,8 @@ int main(){
         cpu.Draw();
 
         DrawLine(screen_width/2, 0, screen_width/2, screen_height, WHITE);
-
+        DrawText(TextFormat("%i", cpu_score), screen_width/4 - 20, 20, 80, WHITE);
+        DrawText(TextFormat("%i", player_score), 3*screen_width/4 - 20, 20, 80, WHITE);
         EndDrawing();
 
     }
