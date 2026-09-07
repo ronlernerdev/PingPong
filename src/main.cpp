@@ -27,7 +27,6 @@ public:
     float x,y;
     float width, height;
     int speed;
-    int orgin;
 
     void Draw(){
         DrawRectangle(x, y, width, height, WHITE);
@@ -53,18 +52,11 @@ public:
 class CpuPaddle: public Paddle{
 public:
     void Update(int ball_y){
-        if(orgin > ball_y){
+        if(y + height/2  > ball_y){
             y = y - speed;
         }
-        if(orgin <= ball_y){
+        if(y + height/2 <= ball_y){
             y = y + speed;
-        }
-
-        if(y <= 0){
-            y = 0;
-        }
-        if(y + height >= GetScreenHeight()){
-            y = GetScreenHeight() - height;
         }
     }
 };
@@ -92,14 +84,12 @@ int main(){
     player.x = screen_width - player.width - 10;
     player.y = screen_height/2 - player.height/2;
     player.speed = 6;
-    player.orgin = player.y + player.height/2;
 
     cpu.width = 25;
     cpu.height = 120;
     cpu.x = 10;
     cpu.y = screen_height/2 - cpu.height/2;
     cpu.speed = 6;
-    cpu.orgin = cpu.y + cpu.height/2;
 
     while(WindowShouldClose() == false){
 
