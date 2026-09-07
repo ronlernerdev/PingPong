@@ -1,14 +1,1 @@
-<<<<<<< HEAD
-web/
-build-web/
-build-raylib-web/
-subprojects/raylib/
-
-# OS/editor/build cache junk
-.DS_Store
-**/.DS_Store
 .cache/
-subprojects/.wraplock
-=======
-.cache/
->>>>>>> dfa5645 (removed web stuff, if you want to compile to web, do it yourself.)
