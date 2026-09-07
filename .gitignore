@@ -1,0 +1,4 @@
+web/
+build-web/
+build-raylib-web/
+subproject/raylib/
